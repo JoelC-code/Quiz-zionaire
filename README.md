@@ -8,3 +8,6 @@ Databases:
 - QuestionBank
 - QuestionBank_Course (pivot)
 - User_Course (pivot)
+
+Link draw io:
+`[https://drive.google.com/file/d/1nNGkII-a2MSxuSrJYAO4jWxQJjctYUHk/view?usp=sharing]` 
