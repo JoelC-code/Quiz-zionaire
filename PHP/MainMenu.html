@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Quizzionaire | Login</title>
+</head>
+
+<body class="overflow-x-hidden">
+    <nav class="p-5 bg-blue-700 rounded-b-xl flex flex-row justify-between">
+        <p class="text-2xl font-semibold text-white pl-5">Quizzionaire</p>
+        <div id="navBar" class="text-white h-full mt-1 pr-5 hidden md:block">
+            <a href="#" class="mr-8">Home</a>
+            <a href="Login.html" class="">Logout</a>
+        </div>
+        <div class="block md:hidden group">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-list mt-1 cursor-pointer"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+            </svg>
+            <!-- <div id="dropdownMenu" class="z-10 w-60 top-0 right-0 translate-x-full absolute h-full bg-blue-800 transform transition-transform duration-300">
+                <ul class="p-4">
+                    <li><a href="#" class="bg-white">Home</a></li>
+                    <li><a href="Login.html">Logout</a></li>
+                </ul>
+            </div> -->
+        </div>
+    </nav>
+
+    <header class="flex flex-col justify-center items-center bg-gray-100 w-full h-50">
+        <p class="text-3xl font-semibold">Welcome, [Username]!</p>
+        <p>Let's start your day with some quiz!</p>
+    </header>
+
+
+    <main>
+    <!--Jika kesusahan, hapus bagian ini-->
+        <div class="p-5">
+            <p class="pb-5 text-center text-xl">Let's start with some new challenge!</p>
+            <div id="cardList" class=" flex md:flex-row flex-col flex-wrap justify-between gap-5">
+                <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
+                    <p class="text-white font-semibold text-xl">DB test_name</p>
+                    <p class="text-white mb-6">DB test_topic</p>
+                    <button type="submit" class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                </div>
+                <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
+                    <p class="text-white font-semibold text-xl">DB test_name</p>
+                    <p class="text-white mb-6">DB test_topic</p>
+                    <button type="submit" class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                </div>
+                <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
+                    <p class="text-white font-semibold text-xl">DB test_name</p>
+                    <p class="text-white mb-6">DB test_topic</p>
+                    <button type="submit" class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                </div>
+            </div>
+        </div>
+        <hr class="p-5 mt-10 border-t-3 ml-5 mr-5 border-blue-700">
+        <div class="p-5">
+            <p class="pb-5 text-center text-xl">How about other challenge?</p>
+            <div id="cardList" class=" flex md:flex-row flex-col flex-wrap justify-between gap-5">
+                <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
+                    <p class="text-white font-semibold text-xl">DB test_name</p>
+                    <p class="text-white mb-6">DB test_topic</p>
+                    <button type="submit" class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                </div>
+                <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
+                    <p class="text-white font-semibold text-xl">DB test_name</p>
+                    <p class="text-white mb-6">DB test_topic</p>
+                    <button type="submit" class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                </div>
+                <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
+                    <p class="text-white font-semibold text-xl">DB test_name</p>
+                    <p class="text-white mb-6">DB test_topic</p>
+                    <button type="submit" class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../JS/Index.js"></script>
+</body>
