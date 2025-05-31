@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Quizzionaire | Login</title>
+    <title>Quizzionaire | Welcome!</title>
 </head>
 
 <body class="overflow-x-hidden">
@@ -15,6 +15,7 @@
         <div id="navBar" class="text-white h-full mt-1 pr-5 hidden md:block">
             <a href="#" class="mr-8">Home</a>
             <a href="Login.html" class="">Logout</a>
+            <a href="listScore.html">List Nilai</a>
         </div>
         <div class="block md:hidden group">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-list mt-1 cursor-pointer"
@@ -45,22 +46,22 @@
                 <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
                     <p class="text-white font-semibold text-xl">DB test_name</p>
                     <p class="text-white mb-6">DB test_topic</p>
-                    <button type="submit" class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                    <button type="submit" name="topic" class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
                 </div>
                 <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
                     <p class="text-white font-semibold text-xl">DB test_name</p>
                     <p class="text-white mb-6">DB test_topic</p>
-                    <button type="submit" class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                    <button type="submit" name="topic" class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
                 </div>
                 <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
                     <p class="text-white font-semibold text-xl">DB test_name</p>
                     <p class="text-white mb-6">DB test_topic</p>
-                    <button type="submit" class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                    <button type="submit" name="topic" class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
                 </div>
             </div>
-        <!--TODO: Sampai sini Ini cuman untuk nunjukin 3 tabel terbaru yang udah dibuat-->
+        <!--TODO: Sampai sini Ini cuman untuk nunjukin 3 test terbaru yang udah dibuat (di chatGPT pake TOP untuk sql-nya)-->
         </div>
-        <hr class="mt-10 mb-10 border-t-3 ml-5 mr-5 border-gray-400">
+        <hr class="mt-10 mb-10 border-t-4 ml-5 mr-5 border-gray-200">
         <div class="p-5">
             <!--!Ini sampai kebawah hanya untuk nunjukin semua tabelnya-->
             <p class="pb-5 text-center text-xl">How about other challenge?</p>
@@ -68,17 +69,17 @@
                 <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
                     <p class="text-white font-semibold text-xl">DB test_name</p>
                     <p class="text-white mb-6">DB test_topic</p>
-                    <button type="submit" class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                    <button type="submit" name="topic" value="1" class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
                 </div>
                 <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
                     <p class="text-white font-semibold text-xl">DB test_name</p>
                     <p class="text-white mb-6">DB test_topic</p>
-                    <button type="submit" class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                    <button type="submit" name="topic" value="2" class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
                 </div>
                 <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
                     <p class="text-white font-semibold text-xl">DB test_name</p>
                     <p class="text-white mb-6">DB test_topic</p>
-                    <button type="submit" class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
+                    <button type="submit" name="topic" value="3" class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md" value="1">Enter Test</button>
                 </div>
             </div>
         </div>
