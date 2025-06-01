@@ -37,6 +37,17 @@
     </nav>
     <main class="p-5">
         <p class="pb-5 text-center text-xl">Let's make a quiz</p>
+        <div class="flex flex-col mb-5">
+            <div class="flex flex-row">
+                <label class="font-semibold">Quiz Name: </label>
+                <input class="ml-2 w-[83%]" type="text" placeholder="Your Quiz Name">
+            </div>
+            <div class="flex flex-row">
+                <label class="font-semibold">The Topic:</label>
+                <textarea class="ml-2 resize-none w-[85%] h-[2.5rem] overflow-hidden"
+                    placeholder="The Topic"></textarea>
+            </div>
+        </div>
         <div id="listCards" class="flex flex-col gap-5">
             <div id="1" class="p-3 rounded-lg flex flex-col gap-3 shadow-lg w-full bg-gray-200">
                 <p class="font-bold mb-2 text-xl">Nomor_Pertanyaan</p>
@@ -69,9 +80,21 @@
                     </select>
                 </div>
                 <div class="w-full flex justify-end">
-                    <p onclick="showWarning()" class="flex p-2 font-semibold text-white rounded-lg bg-red-700">Delete this Question</p>
+                    <p onclick="showQuestionDeleteWarning()" class="flex cursor-pointer p-2 font-semibold text-white rounded-lg bg-red-700">Delete
+                        this Question</p>
                 </div>
             </div>
+        </div>
+        <div class="w-full mt-10 gap-5 flex md:flex-row flex-col">
+            <button
+                class="rounded-lg w-full p-5 bg-gradient-to-b from-blue-700 cursor-pointer to-blue-800 font-semibold text-white text-xl"
+                value="addQestion">Add Question</button>
+            <button
+                class="rounded-lg w-full p-5 bg-gradient-to-b from-green-700 cursor-pointer to-green-800 font-semibold text-white text-xl"
+                value="publishQuiz">Publish Quiz</button>
+            <button
+                class="rounded-lg w-full p-5 bg-gradient-to-b from-red-700 cursor-pointer to-red-800 font-semibold text-white text-xl"
+                value="publishQuiz" onclick="showQuizWarningDelete()">Delete Quiz</button>
         </div>
     </main>
     <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center hidden z-50">
@@ -79,21 +102,37 @@
             <p class="text-lg font-semibold mb-4">You're about to leave while creating/editing quiz, are you sure? (no
                 save will be done in this way)</p>
             <div class="flex justify-end gap-4">
-                <button onclick="closeDialog()" class="cursor-pointer bg-gray-300 px-4 py-2 rounded-lg">Cancel</button>
+                <button onclick="closeDialog()"
+                    class="cursor-pointer bg-green-700 px-4 py-2 rounded-lg text-white">Cancel</button>
                 <a href="TeacherMenu.html">
-                    <button onclick="closeDialog()" class="cursor-pointer bg-red-600 text-white px-4 py-2 rounded-lg">Exit</button>
+                    <button onclick="closeDialog()"
+                        class="cursor-pointer bg-red-600 text-white px-4 py-2 rounded-lg">Exit</button>
                 </a>
             </div>
         </div>
     </div>
-    <div id="Warning" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center hidden z-50">
+    <div id="DeleteQuestionWarning" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center hidden z-50">
         <div class="relative bg-white rounded-lg overflow-hidden max-w-3xl w-[90%] p-6">
-            <p class="text-lg font-semibold mb-4">You're about to delete this question, are you sure (can't be undo)? </p>
+            <p class="text-lg font-semibold mb-4">You're about to delete this question, are you sure (can't be undo)?
+            </p>
             <div class="flex justify-end gap-4">
-                <button onclick="closeWarning()" class="cursor-pointer bg-gray-300 px-4 py-2 rounded-lg">Yes</button>
+                <button onclick="closeQuestionDeleteWarning()" class="cursor-pointer bg-green-700 text-white px-4 py-2 rounded-lg"
+                    type="submit" value="-1">Yes</button>
+                <button onclick="closeQuestionDeleteWarning()"
+                    class="cursor-pointer bg-red-600 text-white px-4 py-2 rounded-lg">No</button>
+            </div>
+        </div>
+    </div>
+    <div id="QuizDeleteWarning" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center hidden z-50">
+        <div class="relative bg-white rounded-lg overflow-hidden max-w-3xl w-[90%] p-6">
+            <p class="text-lg font-semibold mb-4">You're about to delete the WHOLE quiz, are you sure (can't be undo)?
+            </p>
+            <div class="flex justify-end gap-4">
                 <a href="TeacherMenu.html">
-                    <button onclick="closeWarning()" class="cursor-pointer bg-red-600 text-white px-4 py-2 rounded-lg">No</button>
-                </a>
+                <button onclick="closeQuizDeleteWarning()" class="cursor-pointer bg-green-700 text-white px-4 py-2 rounded-lg"
+                    type="submit" value="-1">Yes</button></a>
+                <button onclick="closeQuizDeleteWarning()"
+                    class="cursor-pointer bg-red-600 text-white px-4 py-2 rounded-lg">No</button>
             </div>
         </div>
     </div>

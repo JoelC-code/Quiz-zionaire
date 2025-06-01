@@ -19,10 +19,17 @@ $(document).ready(function () {
         $("#modal").addClass("hidden");
     }
 
-    window.showWarning = function () {
-        $("#Warning").removeClass("hidden");
+    window.showQuestionDeleteWarning = function () {
+        $("#DeleteQuestionWarning").removeClass("hidden");
     }
-    window.closeWarning = function () {
-        $("#Warning").addClass("hidden");
+    window.closeQuestionDeleteWarning = function () {
+        $("#DeleteQuestionWarning").addClass("hidden");
+    }
+
+    window.showQuizWarningDelete = function () {
+        $("#QuizDeleteWarning").removeClass("hidden");
+    }
+    window.closeQuizDeleteWarning = function () {
+        $("#QuizDeleteWarning").addClass("hidden");
     }
 });
