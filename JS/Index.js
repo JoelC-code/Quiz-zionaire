@@ -18,4 +18,11 @@ $(document).ready(function () {
     window.closeDialog = function () {
         $("#modal").addClass("hidden");
     }
+
+    window.showWarning = function () {
+        $("#Warning").removeClass("hidden");
+    }
+    window.closeWarning = function () {
+        $("#Warning").addClass("hidden");
+    }
 });
