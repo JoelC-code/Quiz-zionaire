@@ -13,7 +13,7 @@
         <p class="text-2xl font-semibold text-white">Quizzionaire</p>
     </header>
     <main class="p-15">
-        <form  method="post" action="MainMenu.html">
+        <form  method="post" action="../DB/login.php">
         <div class="flex flex-col justify-center  bg-white p-12 rounded-lg shadow-2xl">
             <p class="font-semibold text-3xl text-center">Welcome Back!</p>
             <p class="text-center mb-5">Ready for some exicting quizzez?</p>
@@ -25,7 +25,7 @@
                 <button type="submit" class="p-2 bg-blue-700 w-full md:w-[48%] text-white font-bold rounded-lg justify-center">Login Now</button>
                 <button type="reset" class="p-2 bg-red-700 w-full md:w-[48%] text-white font-bold rounded-lg justify-center">Clear</button>
             </div>
-            <p class="text-sm text-center pt-3">Don't have an account yet? <a href="index.html" class="text-blue-700 underline">Register here</a></p>
+            <p class="text-sm text-center pt-3">Don't have an account yet? <a href="index.php" class="text-blue-700 underline">Register here</a></p>
         </div>
         </form>
     </main>
