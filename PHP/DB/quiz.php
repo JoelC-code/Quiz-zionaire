@@ -1,7 +1,7 @@
 <?php
 include connectDB();
 
-function readAllQuiz($conn){
+function Quiz($conn){
 
 }
 ?>
