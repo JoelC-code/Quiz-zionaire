@@ -10,6 +10,13 @@
     <title>Quizzionaire | Welcome!</title>
     <?php
     include "../DB/connect.php";
+    $conn = connectDB();
+
+    ?>
+
+    <?php
+    $sql = "SELECT * FROM `tests`";
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     ?>
 </head>
 
@@ -87,30 +94,23 @@
             <div class="p-5">
                 <!--!Ini sampai kebawah hanya untuk nunjukin semua tabelnya-->
                 <p class="pb-5 text-center text-xl">How about other challenge?</p>
-                <div id="cardList" class=" flex md:flex-row flex-col flex-wrap justify-between gap-5">
-                    <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
-                        <p class="text-white font-semibold text-xl">DB test_name</p>
-                        <p class="text-white mb-6">DB test_topic</p>
-                        <button type="submit" name="topic" value="1"
-                            class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md"
-                            value="1">Enter Test</button>
-                    </div>
-                    <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
-                        <p class="text-white font-semibold text-xl">DB test_name</p>
-                        <p class="text-white mb-6">DB test_topic</p>
-                        <button type="submit" name="topic" value="2"
-                            class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md"
-                            value="1">Enter Test</button>
-                    </div>
-                    <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
-                        <p class="text-white font-semibold text-xl">DB test_name</p>
-                        <p class="text-white mb-6">DB test_topic</p>
-                        <button type="submit" name="topic" value="3"
-                            class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md"
-                            value="1">Enter Test</button>
-                    </div>
+
+                <div id="cardList" class="flex md:flex-row flex-col flex-wrap justify-between gap-5">
+                    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                        <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
+                            <p class="text-white font-semibold text-xl"><?= htmlspecialchars($row['Test_Name']) ?></p>
+                            <p class="text-white mb-6"><?= htmlspecialchars($row['Test_Topic']) ?></p>
+                            <button type="submit" name="topic" value="<?= $row['Test_ID'] ?>"
+                                class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md">
+                                Enter Test
+                            </button>
+                        </div>
+                    <?php endwhile; ?>
                 </div>
             </div>
+
+
+
         </form>
     </main>
     <script src="../JS/Index.js"></script>
