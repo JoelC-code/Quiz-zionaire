@@ -8,15 +8,25 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Quizzionaire | Welcome!</title>
+    <?php
+    include "../DB/connect.php";
+    $conn = connectDB();
+
+    ?>
+
+    <?php
+    $sql = "SELECT * FROM `tests`";
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    ?>
 </head>
 
 <body class="overflow-x-hidden">
     <nav class="p-5 bg-blue-700 rounded-b-xl flex flex-row justify-between">
         <p class="text-2xl font-semibold text-white pl-5">Quizzionaire</p>
         <div id="navBar" class="text-white gap-8 h-full mt-1 pr-5 hidden md:block">
-            <a href="MainMenu.html">Home</a>
+            <a href="MainMenu.php">Home</a>
             <a href="#" class="md:ml-8">List Nilai</a>
-            <a href="Login.html" class="md:ml-8">Logout</a>
+            <a href="Login.php" class="md:ml-8">Logout</a>
         </div>
         <div class="block md:hidden group">
             <svg id="hamburgerBtn" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
@@ -32,10 +42,10 @@
                     <li><a href="#"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">Home</a>
                     </li>
-                    <li><a href="listScore.html"
+                    <li><a href="listScore.php"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">List
                             Nilai</a></li>
-                    <li><a href="Login.html"
+                    <li><a href="Login.php"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">Logout</a>
                     </li>
                 </ul>
@@ -51,7 +61,7 @@
 
 
     <main>
-        <form method="post" action="Quiz.html">
+        <form method="post" action="quiz.php">
             <!--TODO: Jika kesusahan, hapus bagian ini-->
             <div class="p-5">
                 <p class="pb-5 text-center text-xl">Let's start with some new challenge!</p>
@@ -84,30 +94,23 @@
             <div class="p-5">
                 <!--!Ini sampai kebawah hanya untuk nunjukin semua tabelnya-->
                 <p class="pb-5 text-center text-xl">How about other challenge?</p>
-                <div id="cardList" class=" flex md:flex-row flex-col flex-wrap justify-between gap-5">
-                    <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
-                        <p class="text-white font-semibold text-xl">DB test_name</p>
-                        <p class="text-white mb-6">DB test_topic</p>
-                        <button type="submit" name="topic" value="1"
-                            class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md"
-                            value="1">Enter Test</button>
-                    </div>
-                    <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
-                        <p class="text-white font-semibold text-xl">DB test_name</p>
-                        <p class="text-white mb-6">DB test_topic</p>
-                        <button type="submit" name="topic" value="2"
-                            class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md"
-                            value="1">Enter Test</button>
-                    </div>
-                    <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
-                        <p class="text-white font-semibold text-xl">DB test_name</p>
-                        <p class="text-white mb-6">DB test_topic</p>
-                        <button type="submit" name="topic" value="3"
-                            class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md"
-                            value="1">Enter Test</button>
-                    </div>
+
+                <div id="cardList" class="flex md:flex-row flex-col flex-wrap justify-between gap-5">
+                    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                        <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-sky-700 to-sky-800">
+                            <p class="text-white font-semibold text-xl"><?= htmlspecialchars($row['Test_Name']) ?></p>
+                            <p class="text-white mb-6"><?= htmlspecialchars($row['Test_Topic']) ?></p>
+                            <button type="submit" name="topic" value="<?= $row['Test_ID'] ?>"
+                                class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md">
+                                Enter Test
+                            </button>
+                        </div>
+                    <?php endwhile; ?>
                 </div>
             </div>
+
+
+
         </form>
     </main>
     <script src="../JS/Index.js"></script>
