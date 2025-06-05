@@ -11,7 +11,7 @@
     <?php
     include "../DB/connect.php";
     ?>
-    
+
 </head>
 
 <body>
@@ -71,10 +71,11 @@
         <div class="relative bg-white rounded-lg overflow-hidden max-w-3xl w-[90%] p-6">
             <p class="text-lg font-semibold mb-4">You're going to stop the quiz midway (progress can't be saved) are you sure?</p>
             <div class="flex justify-end gap-4">
-                <button onclick="closeDialog()" class="cursor-pointer bg-green-700 text-white px-4 py-2 rounded-lg">Yes</button>
-                <a href="MainMenu.html">
-                    <button onclick="closeDialog()" class="cursor-pointer bg-red-600 text-white px-4 py-2 rounded-lg">No</button>
+                <a href="MainMenu.php">
+                    <button onclick="closeDialog()" class="cursor-pointer bg-red-700 text-white px-4 py-2 rounded-lg">Yes</button>
                 </a>
+                <button onclick="closeDialog()" class="cursor-pointer bg-green-600 text-white px-4 py-2 rounded-lg">No</button>
+
             </div>
         </div>
     </div>

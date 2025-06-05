@@ -12,7 +12,6 @@
     session_start();
     include "../DB/connect.php";
     $conn = connectDB();
-
     ?>
 
     <?php
