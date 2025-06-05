@@ -16,9 +16,3 @@ function my_closeDB($conn)
 {
     mysqli_close($conn);
 }
-
-function readTest($conn)
-{
-    $sql = "SELECT * FROM 'tests'";
-    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-}
