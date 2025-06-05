@@ -11,9 +11,12 @@ function insertAccount($name, $password, $role) {
         mysqli_stmt_execute($statement);
 
         if (mysqli_stmt_affected_rows($statement) > 0) {
-            echo "Register account has been made!";
+            header ('location: ../UI/Login.php');
         } else {
-            echo "Test";
+            echo "
+            <script>
+            alert('Registration failed, please try again!');
+            </script>";
         }
     } else {
         echo "Statement prep fail: " . mysqli_error($conn);
