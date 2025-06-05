@@ -7,6 +7,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Quizzionaire | Quiz Session</title>
+
+    <?php
+    include "../DB/connect.php";
+    ?>
 </head>
 
 <body>

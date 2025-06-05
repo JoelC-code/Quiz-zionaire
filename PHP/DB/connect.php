@@ -1,6 +1,7 @@
 <?php
 //Function connect DB
-function connectDB(){
+function connectDB()
+{
     $host = "localhost";
     $user = "root";
     $pass = "";
@@ -15,4 +16,3 @@ function my_closeDB($conn)
 {
     mysqli_close($conn);
 }
-?>

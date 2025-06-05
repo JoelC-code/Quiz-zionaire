@@ -7,6 +7,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Quizzionaire | Quiz Session</title>
+
+    <?php
+    include "../DB/connect.php";
+    ?>
+    
 </head>
 
 <body>
@@ -62,7 +67,7 @@
             </div>
         </div>
     </main>
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center hidden z-50">
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
         <div class="relative bg-white rounded-lg overflow-hidden max-w-3xl w-[90%] p-6">
             <p class="text-lg font-semibold mb-4">You're going to stop the quiz midway (progress can't be saved) are you sure?</p>
             <div class="flex justify-end gap-4">
