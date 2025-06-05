@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Quizzionaire | Welcome!</title>
     <?php
+    session_start();
     include "../DB/connect.php";
     $conn = connectDB();
 
@@ -17,6 +18,11 @@
     <?php
     $sql = "SELECT * FROM `tests`";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    ?>
+
+    <?php
+    $sql_query = "SELECT * FROM `tests` ORDER BY `Test_ID` DESC LIMIT 3";
+    $resultTop3 = mysqli_query($conn, $sql_query) or die(mysqli_error($conn));
     ?>
 </head>
 
@@ -66,27 +72,16 @@
             <div class="p-5">
                 <p class="pb-5 text-center text-xl">Let's start with some new challenge!</p>
                 <div id="cardList" class=" flex md:flex-row flex-col flex-wrap justify-between gap-5">
-                    <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
-                        <p class="text-white font-semibold text-xl">DB test_name</p>
-                        <p class="text-white mb-6">DB test_topic</p>
-                        <button type="submit" name="topic"
-                            class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md"
-                            value="1">Enter Test</button>
-                    </div>
-                    <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
-                        <p class="text-white font-semibold text-xl">DB test_name</p>
-                        <p class="text-white mb-6">DB test_topic</p>
-                        <button type="submit" name="topic"
-                            class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md"
-                            value="1">Enter Test</button>
-                    </div>
-                    <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
-                        <p class="text-white font-semibold text-xl">DB test_name</p>
-                        <p class="text-white mb-6">DB test_topic</p>
-                        <button type="submit" name="topic"
-                            class="text-blue-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md"
-                            value="1">Enter Test</button>
-                    </div>
+                    <?php while ($row = mysqli_fetch_assoc($resultTop3)): ?>
+                        <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
+                            <p class="text-white font-semibold text-xl"><?= htmlspecialchars($row['Test_Name']) ?></p>
+                            <p class="text-white mb-6"><?= htmlspecialchars($row['Test_Topic']) ?></p>
+                            <button type="submit" name="topic" value="<?= $row['Test_ID'] ?>"
+                                class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md">
+                                Enter Test
+                            </button>
+                        </div>
+                    <?php endwhile; ?>
                 </div>
                 <!--TODO: Sampai sini Ini cuman untuk nunjukin 3 test terbaru yang udah dibuat (di chatGPT pake TOP untuk sql-nya)-->
             </div>
