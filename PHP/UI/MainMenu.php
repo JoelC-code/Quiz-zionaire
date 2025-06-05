@@ -12,6 +12,13 @@
     session_start();
     include "../DB/connect.php";
     $conn = connectDB();
+    if (!isset($_SESSION['username'])) {
+        header("Location: ../UI/LoginPage.php"); // redirect if not logged in
+        exit();
+    }
+
+    $username = $_SESSION['username'];
+    $id = $_SESSION['id_user'];
     ?>
 
     <?php
@@ -31,7 +38,7 @@
         <div id="navBar" class="text-white gap-8 h-full mt-1 pr-5 hidden md:block">
             <a href="MainMenu.php">Home</a>
             <a href="#" class="md:ml-8">List Nilai</a>
-            <a href="Login.php" class="md:ml-8">Logout</a>
+            <a href="../DB/logout.php" class="md:ml-8">Logout</a>
         </div>
         <div class="block md:hidden group">
             <svg id="hamburgerBtn" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
@@ -50,7 +57,7 @@
                     <li><a href="listScore.php"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">List
                             Nilai</a></li>
-                    <li><a href="Login.php"
+                    <li><a href="../DB/logout.php"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">Logout</a>
                     </li>
                 </ul>
@@ -60,7 +67,7 @@
     </nav>
 
     <header class="flex flex-col justify-center items-center bg-gray-100 w-full h-50">
-        <p class="text-3xl font-semibold">Welcome, [Username]!</p>
+        <p class="text-3xl font-semibold">Welcome, <?=$username?>!</p>
         <p>Let's start your day with some quiz!</p>
     </header>
 
