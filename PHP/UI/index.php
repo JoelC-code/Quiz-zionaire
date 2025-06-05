@@ -25,7 +25,7 @@
                 <p>Registered as</p>
                 <div class="flex flex-row md:flex-col justify-between p-2">
                     <div>
-                        <input type="radio" name="statusAccount" value="User" required>
+                        <input type="radio" name="statusAccount" value="Users" required>
                         <label>Student</label>
                     </div>
                     <div>

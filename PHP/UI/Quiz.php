@@ -13,7 +13,7 @@
     <nav class="p-5 bg-blue-700 rounded-b-xl flex flex-row justify-between">
         <p class="text-2xl font-semibold text-white pl-5">Quizzionaire</p>
         <div id="navBar" class="text-white gap-8 h-full mt-1 pr-5 hidden md:block">
-            <p onclick="showDialog()">Return to Menu</p>
+            <p onclick="showDialog()" class="cursor-pointer">Return to Menu</p>
         </div>
         <div class="block md:hidden group">
             <svg id="hamburgerBtn" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
