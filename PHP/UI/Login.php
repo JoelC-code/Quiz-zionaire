@@ -29,7 +29,7 @@
                 <button type="submit" class="p-2 bg-blue-700 w-full md:w-[48%] text-white font-bold rounded-lg justify-center">Login Now</button>
                 <button type="reset" class="p-2 bg-red-700 w-full md:w-[48%] text-white font-bold rounded-lg justify-center">Clear</button>
             </div>
-            <p class="text-sm text-center pt-3">Don't have an account yet? <a href="index.html" class="text-blue-700 underline">Register here</a></p>
+            <p class="text-sm text-center pt-3">Don't have an account yet? <a href="index.php" class="text-blue-700 underline">Register here</a></p>
         </div>
         </form>
     </main>

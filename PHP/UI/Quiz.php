@@ -10,8 +10,12 @@
 
     <?php
     include "../DB/connect.php";
+    $conn = connectDB();
+    $readTest = readTest($conn);
+    $tests = $_POST['enter_test'] ?? null;
+    $questions = getQuestions($conn, $tests);
     ?>
-    
+
 </head>
 
 <body>
@@ -47,37 +51,56 @@
                 <p class="text-3xl font-semibold text-center">DB Topic_name</p>
                 <hr class="border-t-1 border-1 w-auto mt-2 mb-2">
             </div>
-            <div class="mt-5 p-5 flex flex-col w-full items">
-                <div class="w-full flex justify-center mb-5">
-                    <img src="https://github.com/JoelC-code/Webprog_AFL3_images/blob/main/login.png?raw=true"
-                        alt="Quiz Image" class="border-1 h-52 w-auto object-contain" />
-                </div>
-                <p class="text-lg text-center pb-5">Ambil soal dari database</p>
-                <div class="p-3 flex bg-gray-100 rounded-xl gap-3 flex-col md:flex-row">
-                    <button name="answer" type="submit"
-                        class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white"
-                        value="1">Jawaban_1</button>
-                    <button name="answer" type="submit"
-                        class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white"
-                        value="2">Jawaban_2</button>
-                    <button name="answer" type="submit"
-                        class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white"
-                        value="3">Jawaban_3</button>
-                </div>
+
+            <div class="mt-5 p-5 flex flex-col w-full items-center">
+                <?php if (!empty($questions)): ?>
+                    <?php $currentQuestion = $questions[1];
+                    ?>
+
+                    <div class="w-full flex justify-center mb-5">
+                        <img src="image/<?=($currentQuestion['Image'])?>"
+                            alt="Question Image" class="border-1 h-52 w-auto object-contain" />
+                    </div>
+                    <p class="text-lg text-center pb-5"><?= htmlspecialchars($currentQuestion['Question']) ?></p>
+                    <form method="post" action="quiz.php">
+                        <input type="hidden" name="enter_test" value="<?= htmlspecialchars($tests) ?>">
+                        <input type="hidden" name="question_id" value="<?= htmlspecialchars($currentQuestion['Question_ID']) ?>">
+
+                        <div class="p-3 flex bg-gray-100 rounded-xl gap-3 flex-col md:flex-row">
+                            <button name="answer" type="submit" value="1"
+                                class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white">
+                                <?= htmlspecialchars($currentQuestion['Answer_1']) ?>
+                            </button>
+
+                            <button name="answer" type="submit" value="2"
+                                class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white">
+                                <?= htmlspecialchars($currentQuestion['Answer_2']) ?>
+                            </button>
+
+                            <button name="answer" type="submit" value="3"
+                                class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white">
+                                <?= htmlspecialchars($currentQuestion['Answer_3']) ?>
+                            </button>
+                        </div>
+                    </form>
+
+                <?php else: ?>
+                    <p>No questions found for this test.</p>
+                <?php endif; ?>
             </div>
         </div>
     </main>
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+    <!-- <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
         <div class="relative bg-white rounded-lg overflow-hidden max-w-3xl w-[90%] p-6">
             <p class="text-lg font-semibold mb-4">You're going to stop the quiz midway (progress can't be saved) are you sure?</p>
             <div class="flex justify-end gap-4">
                 <button onclick="closeDialog()" class="cursor-pointer bg-green-700 text-white px-4 py-2 rounded-lg">Yes</button>
-                <a href="MainMenu.html">
+                <a href="MainMenu.php">
                     <button onclick="closeDialog()" class="cursor-pointer bg-red-600 text-white px-4 py-2 rounded-lg">No</button>
                 </a>
             </div>
         </div>
-    </div>
+    </div> -->
     <script src="../JS/Index.js"></script>
 </body>
 

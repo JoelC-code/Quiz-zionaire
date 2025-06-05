@@ -65,22 +65,22 @@
                 </div>
                 <div>
                     <label class="font-semibold">Answer 1: </label>
-                    <input name="Jawaban_1" type="text" class="ml-2 p-1 border-1 rounded-lg bg-white" required><br>
+                    <input name="Answer_1" type="text" class="ml-2 p-1 border-1 rounded-lg bg-white" required><br>
                 </div>
                 <div>
                     <label class="font-semibold">Answer 2: </label>
-                    <input name="Jawaban_2" type="text" class="ml-2 p-1 border-1 rounded-lg w-48 bg-white" required><br>
+                    <input name="Answer_2" type="text" class="ml-2 p-1 border-1 rounded-lg w-48 bg-white" required><br>
                 </div>
                 <div>
                     <label class="font-semibold">Answer 3: </label>
-                    <input name="Jawaban_4" type="text" class="ml-2 p-1 border-1 rounded-lg w-48 bg-white" required><br>
+                    <input name="Answer_3" type="text" class="ml-2 p-1 border-1 rounded-lg w-48 bg-white" required><br>
                 </div>
                 <div>
                     <label class="font-semibold">Answer: </label>
                     <select class="bg-white border-1 rounded-lg w-10 text-center">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
                     </select>
                 </div>
                 <div class="w-full flex justify-end">
