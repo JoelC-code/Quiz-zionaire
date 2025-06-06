@@ -23,7 +23,7 @@
 
     <?php 
     $sql_query = "SELECT t.Test_Name, a.Score FROM assigned_tests a JOIN tests t ON a.Test_ID = t.Test_ID WHERE Users_ID = $id";
-    $resultTop3 = mysqli_query($conn, $sql_query) or die(mysqli_error($conn));
+    $result = mysqli_query($conn, $sql_query) or die(mysqli_error($conn));
     ?>
 </head>
 
@@ -63,8 +63,8 @@
             <div id="cardList" class=" flex md:flex-row flex-col flex-wrap justify-between gap-5">
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
-                    <p class="text-white font-semibold text-xl"><?=htmlspecialchars($row('Test_Name'))?></p>
-                    <p class="text-white mb-6">Your Score: <?=htmlspecialchars($row('Score'))?> / 100</p>
+                    <p class="text-white font-semibold text-xl"><?=htmlspecialchars($row['Test_Name'])?></p>
+                    <p class="text-white mb-6">Your Score: <?=htmlspecialchars($row['Score'])?> / 100</p>
                 </div>
                 <?php endwhile; ?>
             </div>

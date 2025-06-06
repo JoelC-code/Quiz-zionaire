@@ -37,7 +37,7 @@
         <p class="text-2xl font-semibold text-white pl-5">Quizzionaire</p>
         <div id="navBar" class="text-white gap-8 h-full mt-1 pr-5 hidden md:block">
             <a href="MainMenu.php">Home</a>
-            <a href="#" class="md:ml-8">List Nilai</a>
+            <a href="listScore.php" class="md:ml-8">List Nilai</a>
             <a href="../DB/logout.php" class="md:ml-8">Logout</a>
         </div>
         <div class="block md:hidden group">
