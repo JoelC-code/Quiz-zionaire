@@ -61,17 +61,21 @@
     <main class="p-5 gap-10 flex flex-col">
         <div>
             <div id="cardList" class=" flex md:flex-row flex-col flex-wrap justify-between gap-5">
+            <?php if (mysqli_num_rows($result) > 0): ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
                     <p class="text-white font-semibold text-xl"><?=htmlspecialchars($row['Test_Name'])?></p>
                     <p class="text-white mb-6">Your Score: <?=htmlspecialchars($row['Score'])?> / 100</p>
                 </div>
                 <?php endwhile; ?>
+            <?php else: ?>
+                <p class="text-gray-600 text-center w-full">Take a test first as your first step!</p>
+            <?php endif; ?>
             </div>
         </div>
-        <a href="MainMenu.html" class="bg-gradient-to-b p-5 from-sky-700 to-sky-800 rounded-xl font-semibold text-white text-center text-xl">Return to Main Menu</a>
+        <a href="MainMenu.php" class="bg-gradient-to-b p-5 from-sky-700 to-sky-800 rounded-xl font-semibold text-white text-center text-xl">Return to Main Menu</a>
     </main>
-    <script src="../JS/Index.js"></script>
+    <script src="../../JS/Index.js"></script>
 </body>
 
 </html>

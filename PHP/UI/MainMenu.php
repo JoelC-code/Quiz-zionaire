@@ -77,9 +77,9 @@
             <!--TODO: Jika kesusahan, hapus bagian ini-->
             <div class="p-5">
                 <p class="pb-5 text-center text-xl">Let's start with some new challenge!</p>
-                <div id="cardList" class=" flex md:flex-row flex-col flex-wrap justify-between gap-5">
+                <div id="cardList" class="w-full flex md:flex-row flex-col flex-wrap justify-between gap-5">
                     <?php while ($row = mysqli_fetch_assoc($resultTop3)): ?>
-                        <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
+                        <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
                             <p class="text-white font-semibold text-xl"><?= htmlspecialchars($row['Test_Name']) ?></p>
                             <p class="text-white mb-6"><?= htmlspecialchars($row['Test_Topic']) ?></p>
                             <button type="submit" name="topic" value="<?= $row['Test_ID'] ?>"
@@ -114,5 +114,6 @@
 
         </form>
     </main>
-    <script src="../JS/Index.js"></script>
+    <script src="../../JS/Index.js"></script>
 </body>
+</html>

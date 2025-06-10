@@ -26,8 +26,6 @@
                 <path fill-rule="evenodd"
                     d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
             </svg>
-
-            <!-- This menu slides in from the right -->
             <div id="dropdownMenu"
                 class="fixed top-0 right-0 w-60 h-full bg-blue-800 z-50 transform translate-x-full transition-transform duration-300">
                 <ul class="p-4 gap-4">
@@ -67,7 +65,7 @@
             </div>
         </div>
     </main>
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+    <div id="modal" class="fixed hidden inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
         <div class="relative bg-white rounded-lg overflow-hidden max-w-3xl w-[90%] p-6">
             <p class="text-lg font-semibold mb-4">You're going to stop the quiz midway (progress can't be saved) are you sure?</p>
             <div class="flex justify-end gap-4">
@@ -79,7 +77,7 @@
             </div>
         </div>
     </div>
-    <script src="../JS/Index.js"></script>
+    <script src="../../JS/Index.js"></script>
 </body>
 
 </html>

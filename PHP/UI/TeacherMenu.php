@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Quizzionaire | Welcome!</title>
+    <title>Quizzionaire | Hi Teach!</title>
 
     <?php
     session_start();
@@ -33,7 +33,7 @@
         <p class="text-2xl font-semibold text-white pl-5">Quizzionaire</p>
         <div id="navBar" class="text-white gap-8 h-full mt-1 pr-5 hidden md:block">
             <a href="MainMenu.html">Home</a>
-            <a href="EditCreateQuiz.html" class="md:ml-8">New Quiz</a>
+            <a href="EditCreateQuiz.php" class="md:ml-8">New Quiz</a>
             <a href="../DB/logout.php" class="md:ml-8">Logout</a>
         </div>
         <div class="block md:hidden group">
@@ -50,7 +50,7 @@
                     <li><a href="#"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">Home</a>
                     </li>
-                    <li><a href="EditCreateQuiz.html"
+                    <li><a href="EditCreateQuiz.php"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">New Quiz</a></li>
                     <li><a href="../DB/logout.php"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">Logout</a>
@@ -87,5 +87,5 @@
             </div>
         </form>
     </main>
-    <script src="../JS/index.js"></script>
+    <script src="../../JS/Index.js"></script>
 </body>
