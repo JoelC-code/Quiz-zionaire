@@ -20,17 +20,10 @@ $(document).ready(function () {
         $("#modal").addClass("hidden");
     }
 
-    window.showQuizDeleteWarning = function () {
-        $("#QuizDeleteWarning").removeClass("hidden");
-    }
-
-    window.closeQuizWarningDelete = function () {
-        $("#QuizDeleteWarning").addClass("hidden");
-    }
-
     let questionCount = 0;
 
-    $("#addQuestionBtn").click(function () {
+    $("#addQuestionBtn").click(function (e) {
+        e.preventDefault();
         questionCount++;
         const newCard = $(`<div id="card-${questionCount}" class="p-3 rounded-lg flex flex-col gap-3 shadow-lg w-full bg-gray-200">
             <p class="font-bold mb-2 text-xl">Nomor-${questionCount}</p>
@@ -77,9 +70,9 @@ $(document).ready(function () {
 
     $("#listCards").on("click", ".delete-btn", function () {
         $(this).closest("div[id^='card-']").remove();
-        $("#QuizDeleteWarning").removeClass("hidden");
+        questionCount--;
     });
-
+    
     $("#confirmDelete").click(function () {
         if (questionToDelete) {
             questionToDelete.remove();

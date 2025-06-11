@@ -1,18 +1,26 @@
 <?php
-include_once('connect.php');
+session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+include "../DB/connect.php";
 $conn = connectDB();
 
-if (isset($_POST['delete_quiz'])) {
-    $quizID = $_POST['quiz_id'];
+if (!isset($_SESSION['username'])) {
+    header("Location: ../UI/Login.php");
+    exit();
+}
 
-    $stmt = mysqli_prepare($conn, "DELETE FROM tests WHERE ID = ?");
-    mysqli_stmt_bind_param($stmt, "i", $quizID);
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delete'])) {
+    $testId = intval($_POST['delete']);
 
-    if (mysqli_stmt_execute($stmt)) {
-        header("Location: ../UI/TeacherMenu.php?deleted=success");
+    $sql = "DELETE FROM tests WHERE Test_ID = $testId";
+    if (mysqli_query($conn, $sql)) {
+        header("Location: ../UI/TeacherMenu.php?deleted=1"); // Redirect back to main menu with success flag
         exit();
     } else {
-        echo "Error deleting quiz: " . mysqli_error($conn);
+        header("Location: ../UI/TeacherMenu.php?deleted=0"); // Failed
+        exit();
     }
 }
 ?>

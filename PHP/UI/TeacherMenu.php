@@ -22,7 +22,11 @@
     $id = $_SESSION['id_user'];
     ?>
 
-    <?php 
+    <?php
+
+    ?>
+
+    <?php
     $sql = "SELECT * FROM `tests`";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     ?>
@@ -62,29 +66,41 @@
     </nav>
 
     <header class="flex flex-col justify-center items-center bg-gray-100 w-full h-50">
-        <p class="text-3xl font-semibold">Greetings, <?=$username?>!</p>
+        <p class="text-3xl font-semibold">Greetings, <?= $username ?>!</p>
         <p>Let's make and edit some quizzez!</p>
     </header>
 
 
     <main>
-        <form method="post" action="EditCreateQuiz.php">
-            <div class="p-5">
-                <!--!Ini sampai kebawah hanya untuk nunjukin semua tabelnya-->
-                <p class="pb-5 text-center text-xl">Quizzes that exist</p>
-                <div id="cardList" class=" flex md:flex-row flex-col flex-wrap justify-between gap-5">
+        <div class="p-5">
+            <!--!Ini sampai kebawah hanya untuk nunjukin semua tabelnya-->
+            <p class="pb-5 text-center text-xl">Quizzes that exist</p>
+            <div id="cardList" class=" flex md:flex-row flex-col flex-wrap justify-between gap-5">
+                <?php if (mysqli_num_rows($result) > 0): ?>
                     <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
                             <p class="text-white font-semibold text-xl"><?= htmlspecialchars($row['Test_Name']) ?></p>
                             <p class="text-white mb-6"><?= htmlspecialchars($row['Test_Topic']) ?></p>
-                            <button type="submit" name="topic" value="<?= $row['Test_ID'] ?>"
-                                class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md">
-                                Edit Test
-                            </button>
+                            <form method="post" action="EditCreateQuiz.php">
+                                <button type="submit" name="topic" value="<?= $row['Test_ID'] ?>"
+                                    class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md">
+                                    Edit Test
+                                </button>
+                            </form>
+                            <form method="post" action="../DB/delete.php" onsubmit="return confirm('Are you sure you want to delete this quiz?');">
+                                <input type="hidden" name="delete" value="<?= $row['Test_ID'] ?>">
+                                <button type="submit"
+                                    class="font-semibold md:p-1 text-red-600 p-2 w-full cursor-pointer bg-white border-1 rounded-md">
+                                    Delete Test
+                                </button>
+                            </form>
                         </div>
                     <?php endwhile; ?>
-                </div>
+                <?php else: ?>
+                    <p class="text-center text-gray-500 text-lg w-full">No quiz has been created yet.</p>
+                <?php endif; ?>
             </div>
+        </div>
         </form>
     </main>
     <script src="../../JS/Index.js"></script>

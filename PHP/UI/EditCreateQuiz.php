@@ -11,6 +11,8 @@
     <?php
     session_start();
     include "../DB/connect.php";
+
+    //untuk nambahin logic dalam
     ?>
 </head>
 
@@ -65,41 +67,25 @@
                     class="rounded-lg w-full p-5 bg-gradient-to-b from-green-700 cursor-pointer to-green-800 font-semibold text-white text-xl"
                     name="publishQuiz">Publish Quiz</button>
                 <input type="hidden" name="quiz_id" value="<?= $quizID ?>" />
-                <button
-                    class="rounded-lg w-full p-5 bg-gradient-to-b from-red-700 cursor-pointer to-red-800 font-semibold text-white text-xl"
-                    name="deleteQuiz" type="submit" onclick="showQuizDeleteWarning()">Delete Quiz
-                </button>
         </form>
         </div>
     </main>
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center hidden z-50">
+    <div id="modal" class="fixed hidden inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
         <div class="relative bg-white rounded-lg overflow-hidden max-w-3xl w-[90%] p-6">
-            <p class="text-lg font-semibold mb-4">You're about to leave while creating/editing quiz, are you sure? (no
-                save will be done in this way)</p>
+            <p class="text-lg font-semibold mb-4">You're going to stop the quiz midway (progress can't be saved) are you
+                sure?</p>
             <div class="flex justify-end gap-4">
-                <button onclick="closeDialog()"
-                    class="cursor-pointer bg-gray-300 px-4 py-2 rounded-lg text-white">Cancel</button>
                 <a href="TeacherMenu.php">
                     <button onclick="closeDialog()"
-                        class="cursor-pointer bg-red-600 text-white px-4 py-2 rounded-lg">Exit</button>
+                        class="cursor-pointer bg-red-700 text-white px-4 py-2 rounded-lg">Yes</button>
                 </a>
+                <button onclick="closeDialog()"
+                    class="cursor-pointer bg-green-600 text-white px-4 py-2 rounded-lg">No</button>
+
             </div>
         </div>
     </div>
-    <div id="QuizDeleteWarning" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center hidden z-50">
-        <div class="relative bg-white rounded-lg overflow-hidden max-w-3xl w-[90%] p-6">
-            <p class="text-lg font-semibold mb-4">You're about to delete the WHOLE quiz, are you sure (can't be undo)?
-            </p>
-            <div class="flex justify-end gap-4">
-                <form action="../DB/delete.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this quiz?');">
-                    <button onclick="closeQuizWarningDelete()" class="cursor-pointer bg-gray-300 text-white px-4 py-2 rounded-lg"
-                        type="submit" name="delete_quiz">Yes</button>
-                    <button onclick="closeQuizWarningDelete()"
-                        class="cursor-pointer bg-red-600 text-white px-4 py-2 rounded-lg">No</button>
-                </form>
-            </div>
-        </div>
-    </div>
+
     <script src="../../JS/Index.js"></script>
 
 </body>
