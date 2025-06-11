@@ -22,7 +22,7 @@
     <nav class="p-5 bg-blue-700 rounded-b-xl flex flex-row justify-between">
         <p class="text-2xl font-semibold text-white pl-5">Quizzionaire</p>
         <div id="navBar" class="text-white gap-8 h-full mt-1 pr-5 hidden md:block">
-            <p onclick="showDialog()">Return to Menu</p>
+            <p onclick="showDialog()" class="cursor-pointer">Return to Menu</p>
         </div>
         <div class="block md:hidden group">
             <svg id="hamburgerBtn" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
@@ -30,8 +30,6 @@
                 <path fill-rule="evenodd"
                     d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
             </svg>
-
-            <!-- This menu slides in from the right -->
             <div id="dropdownMenu"
                 class="fixed top-0 right-0 w-60 h-full bg-blue-800 z-50 transform translate-x-full transition-transform duration-300">
                 <ul class="p-4 gap-4">
@@ -90,18 +88,19 @@
             </div>
         </div>
     </main>
-    <!-- <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+    <div id="modal" class="fixed hidden inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
         <div class="relative bg-white rounded-lg overflow-hidden max-w-3xl w-[90%] p-6">
             <p class="text-lg font-semibold mb-4">You're going to stop the quiz midway (progress can't be saved) are you sure?</p>
             <div class="flex justify-end gap-4">
-                <button onclick="closeDialog()" class="cursor-pointer bg-green-700 text-white px-4 py-2 rounded-lg">Yes</button>
                 <a href="MainMenu.php">
-                    <button onclick="closeDialog()" class="cursor-pointer bg-red-600 text-white px-4 py-2 rounded-lg">No</button>
+                    <button onclick="closeDialog()" class="cursor-pointer bg-red-700 text-white px-4 py-2 rounded-lg">Yes</button>
                 </a>
+                <button onclick="closeDialog()" class="cursor-pointer bg-green-600 text-white px-4 py-2 rounded-lg">No</button>
+
             </div>
         </div>
-    </div> -->
-    <script src="../JS/Index.js"></script>
+    </div>
+    <script src="../../JS/Index.js"></script>
 </body>
 
 </html>

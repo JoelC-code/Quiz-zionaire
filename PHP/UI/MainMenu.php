@@ -9,9 +9,26 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Quizzionaire | Welcome!</title>
     <?php
+    session_start();
     include "../DB/connect.php";
     $conn = connectDB();
-    $readTest = readTest($conn);
+    if (!isset($_SESSION['username'])) {
+        header("Location: ../UI/LoginPage.php"); // redirect if not logged in
+        exit();
+    }
+
+    $username = $_SESSION['username'];
+    $id = $_SESSION['id_user'];
+    ?>
+
+    <?php
+    $sql = "SELECT * FROM `tests`";
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+    ?>
+
+    <?php
+    $sql_query = "SELECT * FROM `tests` ORDER BY `Test_ID` DESC LIMIT 3";
+    $resultTop3 = mysqli_query($conn, $sql_query) or die(mysqli_error($conn));
     ?>
 </head>
 
@@ -20,8 +37,8 @@
         <p class="text-2xl font-semibold text-white pl-5">Quizzionaire</p>
         <div id="navBar" class="text-white gap-8 h-full mt-1 pr-5 hidden md:block">
             <a href="MainMenu.php">Home</a>
-            <a href="#" class="md:ml-8">List Nilai</a>
-            <a href="Login.php" class="md:ml-8">Logout</a>
+            <a href="listScore.php" class="md:ml-8">List Nilai</a>
+            <a href="../DB/logout.php" class="md:ml-8">Logout</a>
         </div>
         <div class="block md:hidden group">
             <svg id="hamburgerBtn" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
@@ -40,7 +57,7 @@
                     <li><a href="listScore.php"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">List
                             Nilai</a></li>
-                    <li><a href="Login.php"
+                    <li><a href="../DB/logout.php"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">Logout</a>
                     </li>
                 </ul>
@@ -50,13 +67,30 @@
     </nav>
 
     <header class="flex flex-col justify-center items-center bg-gray-100 w-full h-50">
-        <p class="text-3xl font-semibold">Welcome, [Username]!</p>
+        <p class="text-3xl font-semibold">Welcome, <?=$username?>!</p>
         <p>Let's start your day with some quiz!</p>
     </header>
 
 
     <main>
         <form method="post" action="quiz.php">
+            <!--TODO: Jika kesusahan, hapus bagian ini-->
+            <div class="p-5">
+                <p class="pb-5 text-center text-xl">Let's start with some new challenge!</p>
+                <div id="cardList" class="w-full flex md:flex-row flex-col flex-wrap justify-between gap-5">
+                    <?php while ($row = mysqli_fetch_assoc($resultTop3)): ?>
+                        <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
+                            <p class="text-white font-semibold text-xl"><?= htmlspecialchars($row['Test_Name']) ?></p>
+                            <p class="text-white mb-6"><?= htmlspecialchars($row['Test_Topic']) ?></p>
+                            <button type="submit" name="topic" value="<?= $row['Test_ID'] ?>"
+                                class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md">
+                                Enter Test
+                            </button>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+                <!--TODO: Sampai sini Ini cuman untuk nunjukin 3 test terbaru yang udah dibuat (di chatGPT pake TOP untuk sql-nya)-->
+            </div>
             <hr class="mt-10 mb-10 border-t-4 ml-5 mr-5 border-gray-200">
             <div class="p-5">
                 <!--!Ini sampai kebawah hanya untuk nunjukin semua tabelnya-->
@@ -76,5 +110,6 @@
             </div>
         </form>
     </main>
-    <script src="../JS/Index.js"></script>
+    <script src="../../JS/Index.js"></script>
 </body>
+</html>

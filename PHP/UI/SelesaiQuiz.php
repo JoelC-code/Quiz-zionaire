@@ -47,6 +47,7 @@
             </div>
         </div>
     </main>
+    <script src="../../JS/Index.js"></script>
 </body>
 
 </html>

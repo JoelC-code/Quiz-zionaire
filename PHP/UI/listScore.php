@@ -9,7 +9,21 @@
     <title>Quizzionaire | Scores!</title>
 
     <?php
+    session_start();
     include "../DB/connect.php";
+    $conn = connectDB();
+    if (!isset($_SESSION['username'])) {
+        header("Location: ../UI/LoginPage.php"); // redirect if not logged in
+        exit();
+    }
+
+    $username = $_SESSION['username'];
+    $id = $_SESSION['id_user'];
+    ?>
+
+    <?php 
+    $sql_query = "SELECT t.Test_Name, a.Score FROM assigned_tests a JOIN tests t ON a.Test_ID = t.Test_ID WHERE Users_ID = $id";
+    $result = mysqli_query($conn, $sql_query) or die(mysqli_error($conn));
     ?>
 </head>
 
@@ -46,25 +60,22 @@
     </header>
     <main class="p-5 gap-10 flex flex-col">
         <div>
-            <!--!Ini sampai kebawah hanya untuk nunjukin semua tabelnya-->
             <div id="cardList" class=" flex md:flex-row flex-col flex-wrap justify-between gap-5">
+            <?php if (mysqli_num_rows($result) > 0): ?>
+                <?php while ($row = mysqli_fetch_assoc($result)): ?>
                 <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
-                    <p class="text-white font-semibold text-xl">DB test_name</p>
-                    <p class="text-white mb-6">Your Score: DB Score / 100</p>
+                    <p class="text-white font-semibold text-xl"><?=htmlspecialchars($row['Test_Name'])?></p>
+                    <p class="text-white mb-6">Your Score: <?=htmlspecialchars($row['Score'])?> / 100</p>
                 </div>
-                <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
-                    <p class="text-white font-semibold text-xl">DB test_name</p>
-                    <p class="text-white mb-6">Your Score: DB Score / 100</p>
-                </div>
-                <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
-                    <p class="text-white font-semibold text-xl">DB test_name</p>
-                    <p class="text-white mb-6">Your Score: DB Score / 100</p>
-                </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p class="text-gray-600 text-center w-full">Take a test first as your first step!</p>
+            <?php endif; ?>
             </div>
         </div>
-        <a href="MainMenu.html" class="bg-gradient-to-b p-5 from-sky-700 to-sky-800 rounded-xl font-semibold text-white text-center text-xl">Return to Main Menu</a>
+        <a href="MainMenu.php" class="bg-gradient-to-b p-5 from-sky-700 to-sky-800 rounded-xl font-semibold text-white text-center text-xl">Return to Main Menu</a>
     </main>
-    <script src="../JS/Index.js"></script>
+    <script src="../../JS/Index.js"></script>
 </body>
 
 </html>
