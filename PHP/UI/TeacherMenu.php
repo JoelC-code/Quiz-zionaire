@@ -66,7 +66,6 @@
         <p>Let's make some quizzez!</p>
     </header>
 
-
     <main>
         <div class="p-5">
             <!--!Ini sampai kebawah hanya untuk nunjukin semua tabelnya-->
