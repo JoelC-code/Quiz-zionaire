@@ -66,7 +66,9 @@
                 <button
                     class="rounded-lg w-full p-5 bg-gradient-to-b from-green-700 cursor-pointer to-green-800 font-semibold text-white text-xl"
                     name="publishQuiz">Publish Quiz</button>
-                <input type="hidden" name="quiz_id" value="<?= $quizID ?>" />
+                <?php if (isset($quizID)): ?>
+                    <input type="hidden" name="quiz_id" value="<?= $quizID ?>" />
+                <?php endif; ?>
         </form>
         </div>
     </main>
@@ -85,7 +87,9 @@
             </div>
         </div>
     </div>
-
+    <script>
+        let questionCount = 0;
+    </script>
     <script src="../../JS/Index.js"></script>
 
 </body>
