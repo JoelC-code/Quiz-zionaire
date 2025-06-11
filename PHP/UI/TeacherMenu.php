@@ -23,10 +23,6 @@
     ?>
 
     <?php
-
-    ?>
-
-    <?php
     $sql = "SELECT * FROM `tests`";
     $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     ?>
@@ -37,7 +33,7 @@
         <p class="text-2xl font-semibold text-white pl-5">Quizzionaire</p>
         <div id="navBar" class="text-white gap-8 h-full mt-1 pr-5 hidden md:block">
             <a href="MainMenu.html">Home</a>
-            <a href="EditCreateQuiz.php" class="md:ml-8">New Quiz</a>
+            <a href="CreateQuiz.php" class="md:ml-8">New Quiz</a>
             <a href="../DB/logout.php" class="md:ml-8">Logout</a>
         </div>
         <div class="block md:hidden group">
@@ -54,7 +50,7 @@
                     <li><a href="#"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">Home</a>
                     </li>
-                    <li><a href="EditCreateQuiz.php"
+                    <li><a href="CreateQuiz.php"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">New Quiz</a></li>
                     <li><a href="../DB/logout.php"
                             class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2">Logout</a>
@@ -67,7 +63,7 @@
 
     <header class="flex flex-col justify-center items-center bg-gray-100 w-full h-50">
         <p class="text-3xl font-semibold">Greetings, <?= $username ?>!</p>
-        <p>Let's make and edit some quizzez!</p>
+        <p>Let's make some quizzez!</p>
     </header>
 
 
@@ -81,7 +77,7 @@
                         <div class="md:w-[47%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
                             <p class="text-white font-semibold text-xl"><?= htmlspecialchars($row['Test_Name']) ?></p>
                             <p class="text-white mb-6"><?= htmlspecialchars($row['Test_Topic']) ?></p>
-                            <form method="post" action="EditCreateQuiz.php">
+                            <form method="post" action="EditQuiz.php">
                                 <button type="submit" name="topic" value="<?= $row['Test_ID'] ?>"
                                     class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md">
                                     Edit Test

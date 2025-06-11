@@ -20,13 +20,11 @@ $(document).ready(function () {
         $("#modal").addClass("hidden");
     }
 
-    let questionCount = 0;
-
     $("#addQuestionBtn").click(function (e) {
         e.preventDefault();
         questionCount++;
         const newCard = $(`<div id="card-${questionCount}" class="p-3 rounded-lg flex flex-col gap-3 shadow-lg w-full bg-gray-200">
-            <p class="font-bold mb-2 text-xl">Nomor-${questionCount}</p>
+            <p class="font-bold mb-2 text-xl">Nomor ${questionCount}</p>
             <input type="hidden" name="questionSet[${questionCount}][cardId]" value="${questionCount}">
             <div>
                 <label class="font-semibold">Image (optional): </label>
@@ -69,10 +67,20 @@ $(document).ready(function () {
     let questionToDelete = null;
 
     $("#listCards").on("click", ".delete-btn", function () {
-        $(this).closest("div[id^='card-']").remove();
+        const $card = $(this).closest("div[id^='card-']");
+        const questionIdInput = $card.find("input[name$='[question_id]']");
+
+        // If it's an existing question (has a question_id), add it to deletedQuestions
+        if (questionIdInput.length > 0) {
+            const questionId = questionIdInput.val();
+            const hiddenInput = $(`<input type="hidden" name="deletedQuestions[]" value="${questionId}">`);
+            $("#quizForm").append(hiddenInput);
+        }
+
+        $card.remove();
         questionCount--;
     });
-    
+
     $("#confirmDelete").click(function () {
         if (questionToDelete) {
             questionToDelete.remove();
