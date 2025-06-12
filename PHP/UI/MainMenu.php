@@ -18,7 +18,7 @@
     }
 
     $username = $_SESSION['username'];
-    $id = $_SESSION['id_user'];
+    $id = $_SESSION['user_id'];
     ?>
 
     <?php
@@ -29,6 +29,11 @@
     <?php
     $sql_query = "SELECT * FROM `tests` ORDER BY `Test_ID` DESC LIMIT 3";
     $resultTop3 = mysqli_query($conn, $sql_query) or die(mysqli_error($conn));
+    ?>
+
+    <?php
+    $sql_query = "SELECT * FROM `tests` ORDER BY `Test_ID` ASC";
+    $readTest = mysqli_query($conn, $sql_query) or die(mysqli_error($conn));
     ?>
 </head>
 
@@ -67,7 +72,7 @@
     </nav>
 
     <header class="flex flex-col justify-center items-center bg-gray-100 w-full h-50">
-        <p class="text-3xl font-semibold">Welcome, <?=$username?>!</p>
+        <p class="text-3xl font-semibold">Welcome, <?= $username ?>!</p>
         <p>Let's start your day with some quiz!</p>
     </header>
 
@@ -82,7 +87,7 @@
                         <div class="md:w-[30%] rounded-lg p-3 bg-gradient-to-b from-blue-700 to-blue-800">
                             <p class="text-white font-semibold text-xl"><?= htmlspecialchars($row['Test_Name']) ?></p>
                             <p class="text-white mb-6"><?= htmlspecialchars($row['Test_Topic']) ?></p>
-                            <button type="submit" name="topic" value="<?= $row['Test_ID'] ?>"
+                            <button type="submit" name="enter_test" value="<?= $row['Test_ID'] ?>"
                                 class="text-sky-800 font-semibold md:p-1 p-2 w-full cursor-pointer bg-white border-1 rounded-md">
                                 Enter Test
                             </button>
@@ -112,4 +117,5 @@
     </main>
     <script src="../../JS/Index.js"></script>
 </body>
+
 </html>

@@ -40,7 +40,7 @@
 
                 $_SESSION['username'] = $account['Username'];
                 $_SESSION['status'] = $account['Status'];
-                $_SESSION['id_user'] = $account['Users_ID'];
+                $_SESSION['user_id'] = $account['Users_ID'];
 
                 if ($account['Status'] === 'Users') {
                     header("Location: ../UI/MainMenu.php");
