@@ -22,7 +22,7 @@
     ?>
 
     <?php 
-    $sql_query = "SELECT t.Test_Name, a.Score FROM assigned_tests a JOIN tests t ON a.Test_ID = t.Test_ID WHERE Users_ID = $id";
+    $sql_query = "SELECT t.Test_Name, a.Score FROM assigned_tests a JOIN tests t ON a.Test_ID = t.Test_ID WHERE Users_ID = $id ORDER BY Assignment_ID";
     $result = mysqli_query($conn, $sql_query) or die(mysqli_error($conn));
     ?>
 </head>
