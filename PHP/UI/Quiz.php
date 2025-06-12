@@ -9,11 +9,66 @@
     <title>Quizzionaire | Quiz Session</title>
 
     <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    session_start();
     include "../DB/connect.php";
     $conn = connectDB();
-    $readTest = readTest($conn);
-    $tests = $_POST['enter_test'] ?? null;
-    $questions = getQuestions($conn, $tests);
+
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../UI/Login.php");
+        exit();
+    }
+
+    // Handle submitted answers
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['answer'])) {
+        $selectedAnswer = $_POST['answer'];
+        $questionID = $_POST['question_id'];
+        $testID = $_POST['enter_test'];
+
+        // Store answer in session
+        $_SESSION['answers'][$questionID] = $selectedAnswer;
+
+        // Track progress
+        if (!isset($_SESSION['question_index'])) {
+            $_SESSION['question_index'] = 1;
+        } else {
+            $_SESSION['question_index']++;
+        }
+
+        header("Location: quiz.php");
+        exit();
+    }
+
+    if (isset($_POST['enter_test'])) {
+        $_SESSION['test_id'] = $_POST['enter_test'];
+    }
+
+    $tests = $_SESSION['test_id'] ?? null;
+
+    $questions = [];
+    $testName = "";
+    if ($tests !== null) {
+        $sql = "SELECT * FROM `question_test` WHERE `Test_ID` = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $tests);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $questions = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt = $conn->prepare("SELECT Test_Name FROM tests WHERE Test_ID = ?");
+        $stmt->bind_param("i", $tests);
+        $stmt->execute();
+        $testResult = $stmt->get_result();
+        if ($row = $testResult->fetch_assoc()) {
+            $testName = $row['Test_Name'];
+        }
+    }
+
+    $index = $_SESSION['question_index'] ?? 0;
+    $currentQuestion = $questions[$index] ?? null;
     ?>
 
 </head>
@@ -46,36 +101,36 @@
         <div>
             <div class="w-full h-50 flex flex-col justify-center items-center bg-gray-100">
                 <p class="text-xl font-semibold">Quiz:</p>
-                <p class="text-3xl font-semibold text-center">DB Topic_name</p>
+                <p class="text-3xl font-semibold text-center"><?= htmlspecialchars($testName) ?></p>
                 <hr class="border-t-1 border-1 w-auto mt-2 mb-2">
             </div>
 
             <div class="mt-5 p-5 flex flex-col w-full items-center">
-                <?php if (!empty($questions)): ?>
-                    <?php $currentQuestion = $questions[1];
-                    ?>
+                <?php if ($currentQuestion): ?>
 
-                    <div class="w-full flex justify-center mb-5">
-                        <img src="image/<?=($currentQuestion['Image'])?>"
-                            alt="Question Image" class="border-1 h-52 w-auto object-contain" />
-                    </div>
+                    <?php if (!empty($currentQuestion['Image'])): ?>
+                        <div class="w-full flex justify-center mb-5">
+                            <img src="../Images/<?= htmlspecialchars($currentQuestion['Image']) ?>" alt="Question Image" class="border-1 h-52 w-auto object-contain" />
+                        </div>
+                    <?php endif; ?>
+
                     <p class="text-lg text-center pb-5"><?= htmlspecialchars($currentQuestion['Question']) ?></p>
                     <form method="post" action="quiz.php">
                         <input type="hidden" name="enter_test" value="<?= htmlspecialchars($tests) ?>">
-                        <input type="hidden" name="question_id" value="<?= htmlspecialchars($currentQuestion['Question_ID']) ?>">
+                        <input type="hidden" name="question_id" value="<?= htmlspecialchars($currentQuestion['Question_TestID']) ?>">
 
                         <div class="p-3 flex bg-gray-100 rounded-xl gap-3 flex-col md:flex-row">
-                            <button name="answer" type="submit" value="1"
+                            <button name="answer" type="submit" value="A"
                                 class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white">
                                 <?= htmlspecialchars($currentQuestion['Answer_1']) ?>
                             </button>
 
-                            <button name="answer" type="submit" value="2"
+                            <button name="answer" type="submit" value="B"
                                 class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white">
                                 <?= htmlspecialchars($currentQuestion['Answer_2']) ?>
                             </button>
 
-                            <button name="answer" type="submit" value="3"
+                            <button name="answer" type="submit" value="C"
                                 class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white">
                                 <?= htmlspecialchars($currentQuestion['Answer_3']) ?>
                             </button>
@@ -83,7 +138,43 @@
                     </form>
 
                 <?php else: ?>
-                    <p>No questions found for this test.</p>
+                    <?php
+                    $userID = $_SESSION['user_id'] ?? null;
+
+                    if ($userID && $tests && !empty($_SESSION['answers'])) {
+                        $correct = 0;
+                        $total = count($questions);
+
+                        foreach ($questions as $q) {
+                            $qid = $q['Question_TestID'];
+                            $correctAnswer = $q['Correct_Answers'];
+                            $userAnswer = $_SESSION['answers'][$qid] ?? null;
+
+                            if ($userAnswer == $correctAnswer) {
+                                $correct++;
+                            }
+                        }
+
+                        $rawScore = ($correct / $total);
+                        $score = ceil($rawScore * 100);
+
+                        error_log("User ID: " . $userID);
+                        error_log("Test ID: " . $tests);
+                        error_log("Score: " . $score);
+                        error_log("Answers: " . print_r($_SESSION['answers'], true));
+
+                        $stmt = $conn->prepare("INSERT INTO assigned_tests (Test_ID, Users_ID, Score) VALUES (?, ?, ?)");
+                        $stmt->bind_param("iii", $tests, $userID, $score);
+                        $stmt->execute();
+
+                        $_SESSION['score'] = $score;
+                        unset($_SESSION['answers']);
+                        unset($_SESSION['question_index']);
+
+                        header("Location: selesaiquiz.php");
+                        exit();
+                    }
+                    ?>
                 <?php endif; ?>
             </div>
         </div>

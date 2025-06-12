@@ -18,7 +18,7 @@
     }
 
     $username = $_SESSION['username'];
-    $id = $_SESSION['id_user'];
+    $id = $_SESSION['user_id'];
     ?>
 
     <?php 
