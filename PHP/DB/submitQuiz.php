@@ -24,7 +24,7 @@ function makeQuiz($title, $description)
             $jawaban3 = $q['Jawaban_3'];
             $correct = $q['Jawaban'];
 
-            $image = '';
+            $image = $q['image'];
 
             echo "<pre>";
             print_r($_POST);
@@ -33,7 +33,7 @@ function makeQuiz($title, $description)
             if (isset($_FILES['image']['error'][$index]) && $_FILES['image']['error'][$index] === 0) {
                 $imageName = $_FILES['image']['name'][$index];
                 $tmpPath = $_FILES['image']['tmp_name'][$index];
-                $image = 'uploads/' . uniqid() . '_' . basename($imageName);
+                $image = '../uploads/' . uniqid() . '_' . basename($imageName);
                 move_uploaded_file($tmpPath, $image);
             }
 
