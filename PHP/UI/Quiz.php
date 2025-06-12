@@ -121,17 +121,17 @@
 
                         <div class="p-3 flex bg-gray-100 rounded-xl gap-3 flex-col md:flex-row">
                             <button name="answer" type="submit" value="A"
-                                class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white">
+                                class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white cursor-pointer">
                                 <?= htmlspecialchars($currentQuestion['Answer_1']) ?>
                             </button>
 
                             <button name="answer" type="submit" value="B"
-                                class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white">
+                                class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white cursor-pointer">
                                 <?= htmlspecialchars($currentQuestion['Answer_2']) ?>
                             </button>
 
                             <button name="answer" type="submit" value="C"
-                                class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white">
+                                class="bg-blue-500 w-full z-10 rounded-lg p-3 font-semibold text-white cursor-pointer">
                                 <?= htmlspecialchars($currentQuestion['Answer_3']) ?>
                             </button>
                         </div>

@@ -40,7 +40,7 @@
     <nav class="p-5 bg-blue-700 rounded-b-xl flex flex-row justify-between">
         <p class="text-2xl font-semibold text-white pl-5">Quizzionaire</p>
         <div id="navBar" class="text-white gap-8 h-full mt-1 pr-5 hidden md:block">
-            <p onclick="showDialog()" class="cursor-pointer">Return to Menu</p>
+            <a href="MainMenu.php" class="cursor-pointer">Return to Menu</a>
         </div>
         <div class="block md:hidden group">
             <svg id="hamburgerBtn" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white"
@@ -52,9 +52,7 @@
                 class="fixed top-0 right-0 w-60 h-full bg-blue-800 z-50 transform translate-x-full transition-transform duration-300">
                 <ul class="p-4 gap-4">
                     <li>
-                        <p onclick="showDialog()"
-                            class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2 cursor-pointer">
-                            Return to Menu</p>
+                        <a href="MainMenu.php" class="text-white w-full h-15 hover:bg-white hover:text-blue-800 rounded-lg block p-2 cursor-pointer">Return to Menu</a>
                     </li>
                 </ul>
             </div>
@@ -75,6 +73,7 @@
         </div>
         </div>
     </main>
+
     <script src="../../JS/Index.js"></script>
 </body>
 
