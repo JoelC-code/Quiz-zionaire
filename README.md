@@ -21,7 +21,10 @@ This website is made for the final project for Website Programming. Heavily insp
 - XAMPP (SQL)
 
 ## Screenshot
-![Front page of the website](screenshotpage.png)
+![Login Website](screenshot1.png)
+![](screenshot2.png)
+![](screenshot3.png)
+![](screenshot4.png)
 
 ## Live Demo
 [Click here](https://joelc-code.github.io/Competition_Landing_Page/)
