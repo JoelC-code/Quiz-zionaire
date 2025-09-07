@@ -21,10 +21,24 @@ This website is made for the final project for Website Programming. Heavily insp
 - XAMPP (SQL)
 
 ## Screenshot
+### Login
 ![Login Website](screenshot1.png)
+
+### Student's menu
 ![Student's Menu](screenshot2.png)
+
+### Teacher's menu
 ![Teacher's Menu](screenshot4.png)
+
+### Add question & quiz
 ![Adding question & quizzes](screenshot3.png)
 
+To set up:  
+1. Create a new database in phpMyAdmin.  
+2. Import the `webquiz.sql` file.  
+3. Update `connect.php` in PHP/DB folder with your credentials.  
+
 ## Live Demo
-*(Currently unavailable for hosting — see documentation and source code in this repository)*  
+*(Currently unavailable for hosting — see documentation and source code in this repository)* 
+
+
