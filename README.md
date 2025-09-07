@@ -22,9 +22,9 @@ This website is made for the final project for Website Programming. Heavily insp
 
 ## Screenshot
 ![Login Website](screenshot1.png)
-![](screenshot2.png)
-![](screenshot3.png)
-![](screenshot4.png)
+![Student's Menu](screenshot2.png)
+![Teacher's Menu](screenshot4.png)
+![Adding question & quizzes](screenshot3.png)
 
 ## Live Demo
-[Click here](https://joelc-code.github.io/Competition_Landing_Page/)
+*(Currently unavailable for hosting — see documentation and source code in this repository)*  
